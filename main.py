@@ -68,7 +68,6 @@ frequency_counter = HashTable(8)
 for word in words_in_file:
   frequency_counter.insert(word, 1)
 
-
 print(f"🖨  All done! Here are all of the words from {filename} and their frequencies:\n")
 
 

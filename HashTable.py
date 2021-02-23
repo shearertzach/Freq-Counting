@@ -1,6 +1,5 @@
 from LinkedList import LinkedList
 
-
 class HashTable:
 
   def __init__(self, size):
@@ -15,7 +14,7 @@ class HashTable:
 
   def create_arr(self, size):
     new_ll = []
-    for _ in size:
+    for _ in range(size):
       new_ll.append(LinkedList())
     return new_ll
 
@@ -27,8 +26,9 @@ class HashTable:
   # Hash functions are a function that turns each of these keys into an index value that we can use to decide where in our list each key:value pair should be stored. 
 
   def hash_func(self, key):
-    word_length = len(key)
+    word_length = ord(key[-1])
     index = word_length % self.size
+
     return index
 
 
@@ -38,13 +38,26 @@ class HashTable:
 
   def insert(self, key, value):
     new_data = (key, value)
-    arr_index = self.hash_func(key)
-
+    arr_index = self.hash_func(new_data[0])
     ll = self.arr[arr_index]
+    ll_index = ll.find(new_data[0])
 
-    ll.append(new_data)
+    print(f'|Searching For| -> {new_data[0]} in List[{arr_index}]')
 
-    return f"You inserted {key}: {value} at index {arr_index} successfully."
+    if ll_index == -1:
+      ll.append(new_data)
+    else:
+      print(f'|Duplicate Found| -> {new_data[0]}')
+      ll.update_node(key)
+
+      
+
+
+    
+
+    
+
+    
 
 
   # 4️⃣ TODO: Complete the print_key_values method.
@@ -61,7 +74,3 @@ class HashTable:
   def print_key_values(self):
     for ll in self.arr:
       ll.print_nodes()
-
-
-
-
