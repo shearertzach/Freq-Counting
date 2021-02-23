@@ -1,5 +1,6 @@
 from LinkedList import LinkedList
 
+
 class HashTable:
 
   def __init__(self, size):
@@ -26,8 +27,9 @@ class HashTable:
   # Hash functions are a function that turns each of these keys into an index value that we can use to decide where in our list each key:value pair should be stored. 
 
   def hash_func(self, key):
-    
-    pass
+    word_length = len(key)
+    index = word_length % self.size
+    return index
 
 
   # 3️⃣ TODO: Complete the insert method.
@@ -35,9 +37,14 @@ class HashTable:
   # Should insert a key value pair into the hash table, where the key is the word and the value is a counter for the number of times the word appeared. When inserting a new word in the hash table, be sure to check if there is a Node with the same key in the table already.
 
   def insert(self, key, value):
-    pass
+    new_data = (key, value)
+    arr_index = self.hash_func(key)
 
+    ll = self.arr[arr_index]
 
+    ll.append(new_data)
+
+    return f"You inserted {key}: {value} at index {arr_index} successfully."
 
 
   # 4️⃣ TODO: Complete the print_key_values method.
